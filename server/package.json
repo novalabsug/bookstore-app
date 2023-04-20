@@ -23,7 +23,7 @@
     "validator": "^13.9.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

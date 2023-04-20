@@ -1,15 +1,27 @@
 import { Box, Button, Flex, Input, Link, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { ThemeColors } from '../Themes/default';
+import { signinAuthFunc } from '../apis/apiFuncs';
 
 const Signin = () => {
-  const [signinData, setSigninData] = useState({ email, password });
+  const [signinData, setSigninData] = useState({ email: '', password: '' });
 
   const handleChange = e => {
     setSigninData({ ...signinData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {};
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    signinAuthFunc(signinData)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <Box padding={'3rem 0 5rem 0'}>
       <Box padding={'1rem 0'}>
@@ -18,15 +30,25 @@ const Signin = () => {
         </Text>
       </Box>
       <Box>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Box>
             <Flex>
               <Box margin={'auto'} width={'50%'}>
                 <Box padding={'0.5rem 0'}>
-                  <Input type="text" placeholder={'Email'} />
+                  <Input
+                    type="text"
+                    placeholder={'Email'}
+                    name={'email'}
+                    onChange={handleChange}
+                  />
                 </Box>
                 <Box padding={'0.5rem 0'}>
-                  <Input type="password" placeholder={'Password'} />
+                  <Input
+                    type="password"
+                    placeholder={'Password'}
+                    name="password"
+                    onChange={handleChange}
+                  />
                 </Box>
                 <Box padding={'0.5rem 0'}>
                   <Flex>

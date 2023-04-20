@@ -11,7 +11,7 @@ import path from "path";
 const newID = v4();
 const fsPromises = fs.promises;
 
-export const ErrorHandler = () => {
+export const ErrorHandler = (err, req, res, next) => {
   if (err.type == "VALIDATION ERROR")
     return res.status(err.code || 400).send({ Error: err });
 
