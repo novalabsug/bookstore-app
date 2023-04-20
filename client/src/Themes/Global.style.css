@@ -1,0 +1,16 @@
+@font-face {
+  font-family: quicksand;
+  src: url(./fonts/Quicksand/static/Quicksand-Regular.ttf);
+}
+
+/* * {
+  font-family: quicksand !important;
+} */
+
+body {
+  background: #f8f9fa !important;
+}
+
+a {
+  text-decoration: none !important;
+}
