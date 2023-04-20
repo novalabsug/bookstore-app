@@ -4,13 +4,11 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-import routes from "./router/Routes.js";
-import adminRoutes from "./router/admin/Routes.js";
-import { logger } from "./middleware/logger.js";
-import ErrorHandler from "./middleware/ErrorHandler.js";
 import dotenv from "dotenv";
-import { TryCatch } from "./utils/TryCatch.js";
 import MongoClient from "./connection/conn.db.js";
+import { logger, ErrorHandler } from "./middleware/middleware.js";
+import router from "./router/router.js";
+import { TryCatch } from "./utils/utils.js";
 
 dotenv.config();
 
@@ -24,14 +22,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cookieParser());
 app.use(logger);
 
-const whitelist = [
-  "http://localhost:3000",
-  "http://127.0.0.1:3000",
-  "https://rallencontractor.netlify.app/",
-  "https://rallencontractor.co",
-  "rallencontractor.co",
-  "rallencontractor.netlify.app/",
-];
+const whitelist = ["http://localhost:3000", "http://127.0.0.1:3000"];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -46,8 +37,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use("/", routes);
-app.use("/admin", adminRoutes);
+app.use("/", router);
 
 app.use(ErrorHandler);
 

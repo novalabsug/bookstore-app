@@ -1,8 +1,15 @@
 import { Box, Button, Flex, Input, Link, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeColors } from '../Themes/default';
 
 const Signin = () => {
+  const [signinData, setSigninData] = useState({ email, password });
+
+  const handleChange = e => {
+    setSigninData({ ...signinData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = e => {};
   return (
     <Box padding={'3rem 0 5rem 0'}>
       <Box padding={'1rem 0'}>

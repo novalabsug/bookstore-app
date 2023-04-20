@@ -25,7 +25,7 @@ const Home = () => {
                 Fran Lebowitz
               </Heading>
               <Text fontSize={'5xl'}>
-                Think before you speak. Read before you think
+                "Think before you speak. Read before you think"
               </Text>
               <Box padding={'1rem 0'}>
                 <Link href={'/browse'}>
@@ -69,7 +69,7 @@ const Home = () => {
             <Flex>
               <Box margin={'auto'} width={'70%'}>
                 <Flex justifyContent={'center'} flexWrap={'wrap'}>
-                  <Link href={'/'}>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -77,8 +77,8 @@ const Home = () => {
                     >
                       horror
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -86,8 +86,8 @@ const Home = () => {
                     >
                       mystery/crime
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -95,8 +95,8 @@ const Home = () => {
                     >
                       romance
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -104,8 +104,8 @@ const Home = () => {
                     >
                       sci-fi
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -113,8 +113,8 @@ const Home = () => {
                     >
                       thriller
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -122,8 +122,8 @@ const Home = () => {
                     >
                       hystorical
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -131,8 +131,8 @@ const Home = () => {
                     >
                       young adult
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -140,8 +140,8 @@ const Home = () => {
                     >
                       adventure
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -149,8 +149,8 @@ const Home = () => {
                     >
                       religious
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -158,8 +158,8 @@ const Home = () => {
                     >
                       gothic
                     </Text>
-                  </Link>
-                  <Link href={'/'}>
+                  </Box>
+                  <Box cursor={'pointer'}>
                     <Text
                       padding={'0.5rem 1rem'}
                       margin={'1rem 0.5rem'}
@@ -167,7 +167,7 @@ const Home = () => {
                     >
                       non-fiction
                     </Text>
-                  </Link>
+                  </Box>
                 </Flex>
               </Box>
             </Flex>
