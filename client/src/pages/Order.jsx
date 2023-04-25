@@ -3,8 +3,28 @@ import React from 'react';
 import { Books } from '../config/constants';
 import CartItem from '../components/Carts/CartItem';
 import OrderItem from '../components/Orders/OrderItem';
+import { fetchCheckoutFunc } from '../apis/apiFuncs';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 
 const Order = () => {
+  const [searchParam] = useSearchParams();
+  const ID = searchParam.get('id');
+
+  const [Checkout, setCheckout] = useState({});
+
+  useEffect(() => {
+    fetchCheckoutFunc(ID).then(result => {
+      if (result.status == 'Success') {
+        setCheckout(prevState => {
+          return { ...prevState, ...result.Data };
+        });
+      }
+    });
+  }, []);
+
+  console.log(Checkout);
   return (
     <Box padding={'3rem'}>
       <Flex>
@@ -28,11 +48,31 @@ const Order = () => {
               Client
             </Heading>
             <Box padding={'1rem 0'}>
-              <Text fontSize={'2xl'}>Carry Underwood</Text>
+              <Text fontSize={'2xl'}>
+                {Checkout
+                  ? Checkout?.UserData
+                    ? Checkout?.UserData.fullname
+                    : ''
+                  : ''}
+              </Text>
               <Text fontSize={'lg'} margin={'0.3rem 0'}>
-                carryunderwood@gmail.com
+                {Checkout
+                  ? Checkout?.UserData
+                    ? Checkout?.UserData.email
+                    : ''
+                  : ''}
               </Text>
             </Box>
+          </Box>
+          <Box padding={'1rem 0'}>
+            <Text fontSize={'3xl'}>
+              Cart Total:{' ' + '$'}
+              {Checkout
+                ? Checkout?.CheckoutData
+                  ? Checkout?.CheckoutData?.cartTotal
+                  : ''
+                : ''}
+            </Text>
           </Box>
           <Box padding={'1rem 0'}>
             <Heading as={'h3'} size={'md'}>
@@ -58,9 +98,17 @@ const Order = () => {
                   </Box>
                 </Flex>
                 <Box>
-                  {Books.map((book, index) => (
-                    <OrderItem key={index} orderItem={book} />
-                  ))}
+                  {Checkout
+                    ? Checkout?.Books
+                      ? Checkout?.Books.map((book, index) => (
+                          <OrderItem
+                            key={index}
+                            book={book}
+                            orderItem={Checkout?.CheckoutData?.cartItems}
+                          />
+                        ))
+                      : ''
+                    : ''}
                 </Box>
               </Box>
             </Box>

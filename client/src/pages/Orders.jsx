@@ -1,8 +1,19 @@
 import { Box, Flex, Grid, Heading, Link, Stack, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeColors } from '../Themes/default';
+import { fetchCheckoutFunc, fetchCheckoutsFunc } from '../apis/apiFuncs';
 
 const Orders = () => {
+  const [Checkout, setCheckout] = useState([]);
+
+  useEffect(() => {
+    fetchCheckoutsFunc().then(result => {
+      if (result.status == 'Success') {
+        setCheckout(result.CheckoutsData);
+      }
+    });
+  }, []);
+
   return (
     <Box padding={'3rem'}>
       <Flex>
@@ -35,17 +46,43 @@ const Orders = () => {
             }}
             gridGap="1rem"
           >
-            <Link href="/order?id=2">
-              <Box background={ThemeColors.baseColor} padding={'2rem 1rem'}>
-                <Text fontSize={'2xl'}>Carry Underwood</Text>
-                <Text fontSize={'lg'} margin={'0.5rem 0'}>
-                  9 Books
-                </Text>
-                <Text fontSize={'lg'} margin={'0.5rem 0'}>
-                  $ 2350
+            {Checkout ? (
+              Checkout.length > 0 ? (
+                Checkout.map((checkout, index) => (
+                  <Link key={index} href={'/order?id=' + checkout._id}>
+                    <Box
+                      background={ThemeColors.baseColor}
+                      padding={'2rem 1rem'}
+                    >
+                      <Text fontSize={'2xl'}>{checkout.user}</Text>
+                      <Text fontSize={'lg'} margin={'0.5rem 0'}>
+                        {checkout.cartItems.length +
+                          (checkout.cartItems.length > 0
+                            ? 'Books'
+                            : checkout.cartItems.length < 1
+                            ? 'Books'
+                            : 'Book')}
+                      </Text>
+                      <Text fontSize={'lg'} margin={'0.5rem 0'}>
+                        $ {checkout.cartTotal}
+                      </Text>
+                    </Box>
+                  </Link>
+                ))
+              ) : (
+                <Box padding={'2rem 0'}>
+                  <Text textAlign={'center'} fontSize={'2xl'}>
+                    No orders placed yet
+                  </Text>
+                </Box>
+              )
+            ) : (
+              <Box padding={'2rem 0'}>
+                <Text textAlign={'center'} fontSize={'2xl'}>
+                  No orders placed yet
                 </Text>
               </Box>
-            </Link>
+            )}
           </Grid>
         </Box>
       </Flex>

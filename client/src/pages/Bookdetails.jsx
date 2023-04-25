@@ -1,75 +1,236 @@
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Books } from '../config/constants';
+import { redirect, useSearchParams } from 'react-router-dom';
+import { Books, Profile } from '../config/constants';
+import { deleteBookFunc, fetchBookFunc, newCartFunc } from '../apis/apiFuncs';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Notification from '../components/Notifications/Notification';
 
 const Bookdetails = () => {
   const [searchParam] = useSearchParams();
   const ID = searchParam.get('id');
 
-  let NewBook = {};
+  const [Book, setBook] = useState({});
+  const [NotificationData, setNotificationData] = useState({
+    type: '',
+    status: '',
+    message: '',
+  });
 
-  for (const book of Books) {
-    if (book._id == ID) {
-      NewBook = { ...NewBook, ...book };
-    }
+  useEffect(() => {
+    fetchBookFunc(ID)
+      .then(result => {
+        if (result.status == 'Success') {
+          setBook(result.Book);
+        }
+      })
+      .catch(err => {});
+  }, []);
+
+  const handleAddCart = () => {
+    newCartFunc({ user: Profile?.id, book: Book?._id })
+      .then(result => {
+        if (result.status == 'Success') {
+          setNotificationData(
+            prevState =>
+              (prevState = {
+                ...prevState,
+                type: 'success',
+                status: true,
+                message: 'Added to cart',
+              })
+          );
+          // clear notification data
+          setTimeout(() => {
+            setNotificationData(
+              prevState =>
+                (prevState = {
+                  ...prevState,
+                  type: '',
+                  status: false,
+                  message: '',
+                })
+            );
+            window.location.assign('/cart');
+          }, 3000);
+        }
+
+        if (result.Error) {
+          setNotificationData(
+            prevState =>
+              (prevState = {
+                ...prevState,
+                type: 'error',
+                status: true,
+                message: result.Error.message
+                  ? result.Error.message
+                  : result.Error,
+              })
+          );
+          // clear notification data
+          clearNotification();
+        }
+      })
+      .catch(err => {
+        setNotificationData(
+          prevState =>
+            (prevState = {
+              ...prevState,
+              type: 'error',
+              status: true,
+              message: 'Unexpected error occured',
+            })
+        );
+        // clear notification data
+        clearNotification();
+      });
+  };
+
+  const handleDelete = () => {
+    deleteBookFunc(ID)
+      .then(result => {
+        if (result.status == 'Success') {
+          setNotificationData(
+            prevState =>
+              (prevState = {
+                ...prevState,
+                type: 'success',
+                status: true,
+                message: 'Book deleted',
+              })
+          );
+          // clear notification data
+          clearNotification();
+        }
+
+        if (result.Error) {
+          setNotificationData(
+            prevState =>
+              (prevState = {
+                ...prevState,
+                type: 'error',
+                status: true,
+                message: result.Error.message
+                  ? result.Error.message
+                  : result.Error,
+              })
+          );
+          // clear notification data
+          clearNotification();
+        }
+      })
+      .catch(err => {
+        setNotificationData(
+          prevState =>
+            (prevState = {
+              ...prevState,
+              type: 'error',
+              status: true,
+              message: 'Unexpected error occured',
+            })
+        );
+        // clear notification data
+        clearNotification();
+      });
+  };
+
+  function clearNotification() {
+    setTimeout(() => {
+      setNotificationData(
+        prevState =>
+          (prevState = { ...prevState, type: '', status: false, message: '' })
+      );
+    }, 3000);
   }
-
   return (
-    <Box padding={'3rem'}>
-      <Flex>
-        <Box margin={'auto'} width={'70%'}>
-          <Flex>
-            <Box width={'40%'}>
-              <Image src={NewBook?.thumbnailUrl} width={'100%'} />
-            </Box>
-            <Box width={'60%'} padding={'0 2rem'}>
-              <Box>
-                <Text fontSize={'5xl'}>{NewBook?.title}</Text>
-                <Box padding={'1rem 0'}>
-                  {NewBook?.authors.map((author, index) => (
-                    <Text key={index} fontSize={'md'} fontWeight={'bold'}>
-                      {author}
-                    </Text>
-                  ))}
-                </Box>
+    <>
+      <Notification
+        type={NotificationData.type}
+        message={NotificationData.message}
+        status={NotificationData.status}
+      />{' '}
+      <Box padding={'3rem'}>
+        <Flex>
+          <Box margin={'auto'} width={'70%'}>
+            <Flex>
+              <Box width={'40%'}>
+                <Image src={Book ? Book?.thumbnail : ''} width={'100%'} />
               </Box>
-              <Box>
-                <Flex>
-                  <Text fontSize={'2xl'}>$ {NewBook?.pageCount}</Text>
-                  <Box padding={'0 1rem'}>
-                    <Button
-                      background={'none'}
-                      padding={'1rem'}
-                      border={'1.8px solid #dbdbdb'}
-                      fontSize={'lg'}
-                    >
-                      Add to cart
-                    </Button>
+              <Box width={'60%'} padding={'0 2rem'}>
+                <Box>
+                  <Text fontSize={'5xl'}>{Book?.title}</Text>
+                  <Box padding={'1rem 0'}>
+                    {Book ? (
+                      <Text fontSize={'md'} fontWeight={'bold'}>
+                        {Book?.authors}
+                      </Text>
+                    ) : (
+                      ''
+                    )}
                   </Box>
-                </Flex>
-              </Box>
-              <Box padding={'1rem 0'}>
+                </Box>
                 <Box padding={'1rem 0'}>
-                  <Heading as={'h3'} size={'lg'}>
-                    Description
-                  </Heading>
+                  <Text fontSize={'lg'}>Categories</Text>
+                  <Box padding={'0.5rem 0'}>
+                    {Book
+                      ? Book?.categories
+                        ? Book?.categories?.map((category, index) => (
+                            <Text
+                              key={index}
+                              fontSize={'md'}
+                              fontWeight={'bold'}
+                            >
+                              {category}
+                            </Text>
+                          ))
+                        : ''
+                      : ''}
+                  </Box>
                 </Box>
                 <Box>
-                  <Text fontSize={'md'}>
-                    {NewBook?.longDescription
-                      ? NewBook?.longDescription
-                      : NewBook?.shortDescription
-                      ? NewBook?.shortDescription
-                      : ''}
-                  </Text>
+                  <Flex>
+                    <Text fontSize={'2xl'}>$ {Book ? Book?.price : ''}</Text>
+                    <Box padding={'0 1rem'}>
+                      {Profile?.accountType == 'admin' ? (
+                        <Button
+                          padding={'1rem'}
+                          fontSize={'lg'}
+                          colorScheme="red"
+                          onClick={handleDelete}
+                        >
+                          Delete
+                        </Button>
+                      ) : (
+                        <Button
+                          background={'none'}
+                          padding={'1rem'}
+                          border={'1.8px solid #dbdbdb'}
+                          fontSize={'lg'}
+                          onClick={handleAddCart}
+                        >
+                          Add to cart
+                        </Button>
+                      )}
+                    </Box>
+                  </Flex>
+                </Box>
+                <Box padding={'1rem 0'}>
+                  <Box padding={'1rem 0'}>
+                    <Heading as={'h3'} size={'lg'}>
+                      Description
+                    </Heading>
+                  </Box>
+                  <Box>
+                    <Text fontSize={'lg'}>{Book ? Book?.details : ''}</Text>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          </Flex>
-        </Box>
-      </Flex>
-    </Box>
+            </Flex>
+          </Box>
+        </Flex>
+      </Box>
+    </>
   );
 };
 

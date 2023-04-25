@@ -16,9 +16,25 @@ import {
   FiShoppingBag,
   FiHeadphones,
   FiLogIn,
+  FiLogOut,
 } from 'react-icons/fi';
+import { IsLoggedInFunc, logoutFunc } from '../../middleware/middleware';
+import { Profile } from '../../config/constants';
+import { useState } from 'react';
 
 const MainNavbar = () => {
+  const [searchData, setSearchData] = useState({ search: '' });
+
+  const handleSearchSubmit = e => {
+    e.preventDefault();
+
+    window.location.assign(`/search?search=${searchData.search}`);
+  };
+
+  const handleSearchChange = e => {
+    setSearchData({ ...searchData, [e.target.name]: e.target.value });
+  };
+
   return (
     <Box>
       <Flex>
@@ -38,10 +54,15 @@ const MainNavbar = () => {
           </Link>
         </Box>
         <Spacer />
-        <Box padding={'2rem 3rem'} width={'40%'}>
-          <form>
+        <Box padding={'2rem 3rem'} width={'30%'}>
+          <form onSubmit={handleSearchSubmit}>
             <Box>
-              <Input type="text" placeholder="Search by keywords" />
+              <Input
+                type="text"
+                name="search"
+                placeholder="Search by keywords"
+                onChange={handleSearchChange}
+              />
             </Box>
           </form>
         </Box>
@@ -63,37 +84,88 @@ const MainNavbar = () => {
             </Box>
             <Flex padding={'0.5rem 1rem'}>
               <Box padding={'0 0.5rem'}>
-                <Link href={'/'}>
+                {IsLoggedInFunc().status ? (
+                  <Box padding={'0 0.3rem'}>
+                    <Text
+                      color={ThemeColors.primaryColor}
+                      style={{
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                      }}
+                      fontSize={'2xl'}
+                    >
+                      {Profile?.fullname
+                        ? Profile?.fullname.toString().split(' ', 1)[0]
+                        : ''}
+                    </Text>
+                  </Box>
+                ) : (
                   <FiUser
                     size={30}
                     _hover={{ color: ThemeColors.primaryColor }}
                   />
-                </Link>
+                )}
               </Box>
               <Spacer />
-              <Box padding={'0 0.5rem'}>
-                <Link href={'/cart'}>
-                  <FiShoppingBag
-                    size={30}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                  />
+              {Profile?.accountType == 'admin' ? (
+                ''
+              ) : (
+                <Box padding={'0 0.5rem'}>
+                  <Link href={'/cart'}>
+                    <FiShoppingBag
+                      size={30}
+                      _hover={{ color: ThemeColors.primaryColor }}
+                    />
+                  </Link>
+                </Box>
+              )}
+            </Flex>
+            {Profile?.accountType == 'admin' ? (
+              <Box padding={'0 1rem'}>
+                <Link href="/dashboard">
+                  <Button
+                    background={'none'}
+                    padding={'1.3rem 1rem'}
+                    border={'1.8px solid #dbdbdb'}
+                    fontSize={'lg'}
+                  >
+                    Dashboard
+                  </Button>
                 </Link>
               </Box>
-            </Flex>
+            ) : (
+              ''
+            )}
             <Box padding={'0 1rem'}>
-              <Link href="/signin">
+              {IsLoggedInFunc().status ? (
                 <Button
                   background={'none'}
                   padding={'1.3rem 1rem'}
                   border={'1.8px solid #dbdbdb'}
                   fontSize={'lg'}
+                  onClick={logoutFunc}
                 >
                   <Box margin={'0 0.3rem'}>
-                    <FiLogIn size={25} />
+                    <FiLogOut size={25} />
                   </Box>
-                  Sign In
+                  Logout
                 </Button>
-              </Link>
+              ) : (
+                <Link href="/signin">
+                  <Button
+                    background={'none'}
+                    padding={'1.3rem 1rem'}
+                    border={'1.8px solid #dbdbdb'}
+                    fontSize={'lg'}
+                  >
+                    <Box margin={'0 0.3rem'}>
+                      <FiLogIn size={25} />
+                    </Box>
+                    Sign In
+                  </Button>
+                </Link>
+              )}
             </Box>
           </Flex>
         </Box>

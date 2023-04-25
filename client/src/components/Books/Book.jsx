@@ -10,7 +10,7 @@ const Book = ({ book }) => {
         padding={'1rem'}
         background={ThemeColors.baseColor}
       >
-        <Image src={book.thumbnailUrl} width={'100%'} />
+        <Image src={'http://localhost:3501/' + book.thumbnail} width={'100%'} />
         <Box padding={'0.5rem 0 0 0'}>
           <Box>
             <Text
@@ -29,7 +29,7 @@ const Book = ({ book }) => {
               fontWeight={'bold'}
               color={ThemeColors.primaryColor}
             >
-              $ {book.pageCount}
+              $ {book.price}
             </Text>
           </Box>
         </Box>

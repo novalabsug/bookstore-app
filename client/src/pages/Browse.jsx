@@ -1,10 +1,25 @@
 import { Box, Flex, Stack, Text, Link, Heading, Grid } from '@chakra-ui/react';
 import React from 'react';
 import { ThemeColors } from '../Themes/default';
-import { Books } from '../config/constants';
 import Book from '../components/Books/Book';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { fetchBooksFunc } from '../apis/apiFuncs';
+import { Genres } from '../config/constants';
 
 const Browse = () => {
+  const [Books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetchBooksFunc()
+      .then(result => {
+        if (result.status == 'Success') {
+          setBooks(result.Books);
+        }
+      })
+      .catch(err => {});
+  }, []);
+
   return (
     <>
       <Box>
@@ -17,105 +32,17 @@ const Browse = () => {
                 </Heading>
               </Box>
               <Stack>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    horror
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    mystery/crime
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    romance
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    sci-fi
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    thriller
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    hystorical
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    young adult
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    adventure
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    religious
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    gothic
-                  </Text>
-                </Link>
-                <Link href={'/'}>
-                  <Text
-                    fontSize={'md'}
-                    _hover={{ color: ThemeColors.primaryColor }}
-                    margin={'0 1rem 0 0'}
-                  >
-                    non-fiction
-                  </Text>
-                </Link>
+                {Genres.map((genre, index) => (
+                  <Link key={index} href={'/search?search=' + genre.value}>
+                    <Text
+                      fontSize={'md'}
+                      _hover={{ color: ThemeColors.primaryColor }}
+                      margin={'0 1rem 0 0'}
+                    >
+                      {genre.label}
+                    </Text>
+                  </Link>
+                ))}
               </Stack>
             </Box>
             <Box width={'80%'}>

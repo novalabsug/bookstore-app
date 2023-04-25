@@ -10,10 +10,22 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react';
-import { Books } from '../config/constants';
+import { Genres } from '../config/constants';
 import Book from '../components/Books/Book';
+import { fetchBooksFunc } from '../apis/apiFuncs';
 
 const Home = () => {
+  const [Books, setBooks] = useState([]);
+
+  useEffect(() => {
+    fetchBooksFunc()
+      .then(result => {
+        if (result.status == 'Success') {
+          setBooks(result.Books);
+        }
+      })
+      .catch(err => {});
+  }, []);
   return (
     <>
       <Box>
@@ -69,105 +81,17 @@ const Home = () => {
             <Flex>
               <Box margin={'auto'} width={'70%'}>
                 <Flex justifyContent={'center'} flexWrap={'wrap'}>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      horror
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      mystery/crime
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      romance
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      sci-fi
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      thriller
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      hystorical
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      young adult
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      adventure
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      religious
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      gothic
-                    </Text>
-                  </Box>
-                  <Box cursor={'pointer'}>
-                    <Text
-                      padding={'0.5rem 1rem'}
-                      margin={'1rem 0.5rem'}
-                      border={'1.8px solid #dbdbdb'}
-                    >
-                      non-fiction
-                    </Text>
-                  </Box>
+                  {Genres.map((genre, index) => (
+                    <Box key={index}>
+                      <Text
+                        padding={'0.5rem 1rem'}
+                        margin={'1rem 0.5rem'}
+                        border={'1.8px solid #dbdbdb'}
+                      >
+                        {genre.label}
+                      </Text>
+                    </Box>
+                  ))}
                 </Flex>
               </Box>
             </Flex>
@@ -194,9 +118,23 @@ const Home = () => {
             gridGap="1rem"
             padding="2rem 1rem"
           >
-            {Books.map((book, index) => (
-              <Book key={index} book={book} />
-            ))}
+            {Books ? (
+              Books.length > 0 ? (
+                Books.map((book, index) => <Book key={index} book={book} />)
+              ) : (
+                <Box padding={'2rem 0'}>
+                  <Text fontSize={'2xl'} textAlign={'center'}>
+                    No books found
+                  </Text>
+                </Box>
+              )
+            ) : (
+              <Box padding={'2rem 0'}>
+                <Text fontSize={'2xl'} textAlign={'center'}>
+                  No books found
+                </Text>
+              </Box>
+            )}
           </Grid>
         </Box>
       </Box>

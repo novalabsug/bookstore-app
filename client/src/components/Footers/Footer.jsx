@@ -2,6 +2,7 @@ import { Box, Flex, Grid, Heading, Link, Text } from '@chakra-ui/react';
 import React from 'react';
 import { FaEnvelope, FaPhone } from 'react-icons/fa';
 import { ThemeColors } from '../../Themes/default';
+import { Genres } from '../../config/constants';
 
 const Footer = () => {
   return (
@@ -46,105 +47,17 @@ const Footer = () => {
           </Box>
           <Box padding={'0.5rem 0'}>
             <Flex flexWrap={'wrap'}>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  horror
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  mystery/crime
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  romance
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  sci-fi
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  thriller
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  hystorical
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  young adult
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  adventure
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  religious
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  gothic
-                </Text>
-              </Link>
-              <Link href={'/'}>
-                <Text
-                  fontSize={'1.3rem'}
-                  _hover={{ color: ThemeColors.primaryColor }}
-                  margin={'0 1rem 0 0'}
-                >
-                  non-fiction
-                </Text>
-              </Link>
+              {Genres.map((genre, index) => (
+                <Link key={index} href={'/search?search=' + genre.value}>
+                  <Text
+                    fontSize={'1.3rem'}
+                    _hover={{ color: ThemeColors.primaryColor }}
+                    margin={'0 1rem 0 0'}
+                  >
+                    {genre.label}
+                  </Text>
+                </Link>
+              ))}
             </Flex>
           </Box>
         </Box>

@@ -18,6 +18,9 @@ export const ErrorHandler = (err, req, res, next) => {
   if (err.type == "AUTHENTICATION ERROR")
     return res.status(err.code || 401).send({ Error: err });
 
+  if (err.type == "VERIFICATION ERROR")
+    return res.status(err.code || 401).send({ Error: err });
+
   return res.status(500).json({ Error: "Server error has occured" });
 };
 

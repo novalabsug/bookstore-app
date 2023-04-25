@@ -3,15 +3,10 @@ import bcryptjs from "bcryptjs";
 import { AuthenticationError } from "../utils/utils.js";
 
 const userSchema = mongoose.Schema({
-  fullname: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  password: {
-    type: String,
-  },
+  fullname: String,
+  email: String,
+  accountType: String,
+  password: String,
   createdOn: {
     type: Date,
     default: new Date(),

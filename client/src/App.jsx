@@ -22,12 +22,47 @@ function App() {
       <MainNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/search" element={<Search />} />
-        <Route path="/bookdetails" element={<Bookdetails />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/order" element={<Order />} />
+        <Route
+          path="/bookdetails"
+          element={
+            <ProtectedRoute>
+              <Bookdetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <ProtectedRoute>
+              <Order />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/browse" element={<Browse />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />

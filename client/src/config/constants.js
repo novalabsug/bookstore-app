@@ -2,6 +2,53 @@ const DEV_SERVER_URL = 'http://127.0.0.1:3501';
 
 const PROD_SERVER_URL = 'https://rallen-contractor-server.onrender.com/admin';
 
+export const Genres = [
+  {
+    label: 'Horror',
+    value: 'horror',
+  },
+  {
+    label: 'Mystery/Crime',
+    value: 'mystery/crime',
+  },
+  {
+    label: 'Romance',
+    value: 'romance',
+  },
+  {
+    label: 'Sci-Fi',
+    value: 'sci-fi',
+  },
+  {
+    label: 'Thriller',
+    value: 'thriller',
+  },
+  {
+    label: 'Hystorical',
+    value: 'hystorical',
+  },
+  {
+    label: 'Young Adult',
+    value: 'youngAdult',
+  },
+  {
+    label: 'Adventure',
+    value: 'adventure',
+  },
+  {
+    label: 'Religious',
+    value: 'religious',
+  },
+  {
+    label: 'Gothic',
+    value: 'gothic',
+  },
+  {
+    label: 'Non-Fiction',
+    value: 'non-fiction',
+  },
+];
+
 export const Books = [
   {
     _id: 1,

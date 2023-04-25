@@ -18,6 +18,16 @@ export const ValidationError = (message) => {
   };
 };
 
+export const VerificationError = (message) => {
+  const NewError = new Error(message);
+  return {
+    type: "VERIFICATION ERROR",
+    code: NewError.code || 400,
+    name: NewError.name,
+    message: NewError.message,
+  };
+};
+
 export const TryCatch = (fn) => async (req, res, next) => {
   try {
     await fn(req, res, next);
