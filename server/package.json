@@ -23,21 +23,21 @@
     "validator": "^13.9.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "npm run server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/novalabsug/rallen-server.git"
+    "url": "git+ https://github.com/novalabsug/bookstore-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/novalabsug/rallen-server/issues"
+    "url": "https://github.com/novalabsug/bookstore-app/issues"
   },
   "engines": {
     "node": ">=16.19.1",
     "npm": ">=8.11.0"
   },
-  "homepage": "https://github.com/novalabsug/rallen-server#readme"
+  "homepage": "https://github.com/novalabsug/bookstore-app#readme"
 }

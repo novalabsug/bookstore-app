@@ -887,3 +887,8 @@
 2023-04-26	-	10:03:14	-	2e2e1bab-25c8-49bc-80b3-9fd47bd035e1	-	GET	-	http://localhost:3000	-	/data/book/search/harry
 2023-04-26	-	10:04:14	-	2e2e1bab-25c8-49bc-80b3-9fd47bd035e1	-	GET	-	http://localhost:3000	-	/data/book/6448c24dc30b873bc93e9e15
 2023-04-26	-	10:04:15	-	2e2e1bab-25c8-49bc-80b3-9fd47bd035e1	-	GET	-	undefined	-	/uploads/4c810033-409a-42df-9419-4daba84ff455download.jpeg
+2023-04-26	-	11:01:37	-	4ea4d5d7-5bb4-4ae5-97d8-ba74bfc985d5	-	OPTIONS	-	https://bookstore-rcxwcxrn8-novalabsug.vercel.app	-	/data/books
+2023-04-26	-	11:01:37	-	4ea4d5d7-5bb4-4ae5-97d8-ba74bfc985d5	-	GET	-	https://bookstore-rcxwcxrn8-novalabsug.vercel.app	-	/data/books
+2023-04-26	-	11:13:33	-	c5ef849d-14b6-4472-8002-1ea57fa7eb94	-	GET	-	http://localhost:3000	-	/data/books
+2023-04-26	-	11:31:26	-	e9e363f9-0d87-415c-8124-387483aa1ae8	-	OPTIONS	-	https://bookstore-app-git-frontend-novalabsug.vercel.app	-	/data/books
+2023-04-26	-	11:31:26	-	e9e363f9-0d87-415c-8124-387483aa1ae8	-	GET	-	https://bookstore-app-git-frontend-novalabsug.vercel.app	-	/data/books

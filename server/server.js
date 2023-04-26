@@ -25,7 +25,12 @@ app.use(logger);
 app.use(express.static("uploads"));
 app.use("/uploads", express.static("uploads"));
 
-const whitelist = ["http://localhost:3000", "http://127.0.0.1:3000"];
+const whitelist = [
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "https://bookstore-rcxwcxrn8-novalabsug.vercel.app/",
+  "bookstore-rcxwcxrn8-novalabsug.vercel.app/",
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
