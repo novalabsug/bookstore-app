@@ -144,7 +144,7 @@ const Cart = () => {
                 >
                   {/* // heading */}
                   <Box padding={'0 0 1rem 0'}>
-                    <Flex>
+                    <Flex display={{ base: 'none', md: 'flex', xl: 'flex' }}>
                       <Box width={'50%'}>
                         <Heading as={'h3'} size={'md'}>
                           Books
@@ -157,7 +157,7 @@ const Cart = () => {
                       </Box>
                       <Box width={'20%'}>
                         <Heading as={'h3'} size={'md'}>
-                          Total
+                          Price
                         </Heading>
                       </Box>
                     </Flex>

@@ -23,7 +23,7 @@ const OrderItem = ({ orderItem, book }) => {
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}
-              fontSize={{ base: '3xl', md: '2xl', xl: 'lg' }}
+              fontSize={{ base: '2xl', md: '2xl', xl: 'lg' }}
             >
               {book?.title}
             </Text>

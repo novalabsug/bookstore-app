@@ -14,13 +14,17 @@ const Book = ({ book }) => {
         <Box padding={'0.5rem 0 0 0'}>
           <Box>
             <Text
-              display={'-webkit-box'}
+              display={{
+                base: 'block',
+                md: '-webkit-box',
+                xl: '-webkit-box',
+              }}
               style={{
                 WebkitLineClamp: 1,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}
-              fontSize={'1.1rem'}
+              fontSize={{ base: '2xl', md: '2xl', xl: 'lg' }}
             >
               {book.title}
             </Text>

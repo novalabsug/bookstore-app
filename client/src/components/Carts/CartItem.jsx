@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Image, Input, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Input,
+  Text,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { ThemeColors } from '../../Themes/default';
 import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
@@ -100,19 +108,29 @@ const CartItem = ({ cartItem, calcTotalFunc, setCheckoutData }) => {
         message={NotificationData.message}
         status={NotificationData.status}
       />
-      <Flex padding={'1rem 0'}>
-        <Box width={'50%'}>
+      <Flex
+        padding={{ base: '2rem 0', md: '1rem 0', xl: '1rem 0' }}
+        flexDirection={{ base: 'column', md: 'row', xl: 'row' }}
+      >
+        <Box width={{ base: '100%', md: '50%', xl: '50%' }}>
           <Flex>
-            <Image src={cartItem?.bookData?.thumbnail} width={'30%'} />
+            <Image
+              src={cartItem?.bookData?.thumbnail}
+              width={{ base: '40%', md: '40%', xl: '30%' }}
+            />
             <Box padding={'1rem'}>
               <Text
-                display={'-webkit-box'}
+                display={{
+                  base: 'block',
+                  md: '-webkit-box',
+                  xl: '-webkit-box',
+                }}
                 style={{
                   WebkitLineClamp: 1,
                   WebkitBoxOrient: 'vertical',
                   overflow: 'hidden',
                 }}
-                fontSize={'lg'}
+                fontSize={{ base: '2xl', md: '2xl', xl: 'lg' }}
               >
                 {cartItem?.bookData?.title}
               </Text>
@@ -122,7 +140,15 @@ const CartItem = ({ cartItem, calcTotalFunc, setCheckoutData }) => {
             </Box>
           </Flex>
         </Box>
-        <Box width={'30%'}>
+        <Box width={{ base: '100%', md: '30%', xl: '30%' }}>
+          <Box
+            padding={'1rem 0'}
+            display={{ base: 'block', md: 'none', xl: 'none' }}
+          >
+            <Heading as={'h3'} size={'md'}>
+              Copies
+            </Heading>
+          </Box>
           <Box>
             <Flex>
               <Button
@@ -156,7 +182,15 @@ const CartItem = ({ cartItem, calcTotalFunc, setCheckoutData }) => {
             </Flex>
           </Box>
         </Box>
-        <Box width={'20%'}>
+        <Box width={{ base: '100%', md: '20%', xl: '20%' }}>
+          <Box
+            padding={'1rem 0'}
+            display={{ base: 'block', md: 'none', xl: 'none' }}
+          >
+            <Heading as={'h3'} size={'md'}>
+              Price
+            </Heading>
+          </Box>
           <Flex>
             <Box padding={'0 2rem 0 0'}>
               <Text fontSize={'3xl'}>${cartItem?.bookData?.price}</Text>

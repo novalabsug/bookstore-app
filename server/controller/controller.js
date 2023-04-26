@@ -228,9 +228,9 @@ export const fetchCart = TryCatch(async (req, res, next) => {
 export const newCartPost = TryCatch(async (req, res, next) => {
   const { user, book } = req.body;
 
-  const BookData = await Cart.findOne({ book, user });
+  const BookData = await Cart.findOne({ book, user, status: "active" });
 
-  console.log(BookData)
+  console.log(BookData);
 
   if (BookData) throw VerificationError("Book already in cart");
 

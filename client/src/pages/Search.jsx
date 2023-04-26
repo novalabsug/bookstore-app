@@ -18,9 +18,9 @@ const Search = () => {
   }, []);
 
   return (
-    <Box padding={'1rem 3rem 3rem 3rem'}>
+    <Box padding={{ base: '2rem 1rem', md: '2rem', xl: '1rem 3rem 3rem 3rem' }}>
       <Box padding={'1rem 0'}>
-        <Flex>
+        <Flex flexDirection={{ base: 'column', md: 'column', xl: 'row' }}>
           <Text fontSize={'3xl'}>Showing results for: </Text>
           <Text fontSize={'3xl'} color={ThemeColors.primaryColor}>
             {searchParamValue}

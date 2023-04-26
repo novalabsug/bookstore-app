@@ -77,6 +77,7 @@ const MainNavbar = () => {
                   name="search"
                   placeholder="Search by keywords"
                   onChange={handleSearchChange}
+                  color={ThemeColors.baseColor}
                 />
               </Box>
             </form>
