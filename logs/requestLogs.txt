@@ -890,3 +890,5 @@
 2023-04-26	-	11:01:37	-	4ea4d5d7-5bb4-4ae5-97d8-ba74bfc985d5	-	OPTIONS	-	https://bookstore-rcxwcxrn8-novalabsug.vercel.app	-	/data/books
 2023-04-26	-	11:01:37	-	4ea4d5d7-5bb4-4ae5-97d8-ba74bfc985d5	-	GET	-	https://bookstore-rcxwcxrn8-novalabsug.vercel.app	-	/data/books
 2023-04-26	-	11:13:33	-	c5ef849d-14b6-4472-8002-1ea57fa7eb94	-	GET	-	http://localhost:3000	-	/data/books
+2023-04-26	-	11:31:26	-	e9e363f9-0d87-415c-8124-387483aa1ae8	-	OPTIONS	-	https://bookstore-app-git-frontend-novalabsug.vercel.app	-	/data/books
+2023-04-26	-	11:31:26	-	e9e363f9-0d87-415c-8124-387483aa1ae8	-	GET	-	https://bookstore-app-git-frontend-novalabsug.vercel.app	-	/data/books

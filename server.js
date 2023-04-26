@@ -28,8 +28,8 @@ app.use("/uploads", express.static("uploads"));
 const whitelist = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "https://bookstore-rcxwcxrn8-novalabsug.vercel.app/",
-  "bookstore-rcxwcxrn8-novalabsug.vercel.app/",
+  "https://booksbyme.vercel.app",
+  "booksbyme.vercel.app",
 ];
 
 const corsOptions = {
