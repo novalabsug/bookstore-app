@@ -2,7 +2,7 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3501/",
+  "proxy": "https://booksbyme.onrender.com",
   "dependencies": {
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",

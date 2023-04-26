@@ -1,6 +1,6 @@
 const DEV_SERVER_URL = 'http://127.0.0.1:3501';
 
-const PROD_SERVER_URL = 'https://rallen-contractor-server.onrender.com/admin';
+const PROD_SERVER_URL = 'https://booksbyme.onrender.com';
 
 export const Genres = [
   {
@@ -202,4 +202,4 @@ export const Books = [
 
 export const Profile = JSON.parse(localStorage.getItem('bookstore'));
 
-export const DB_URL = DEV_SERVER_URL;
+export const DB_URL = PROD_SERVER_URL;
