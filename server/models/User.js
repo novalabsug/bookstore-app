@@ -5,7 +5,10 @@ import { AuthenticationError } from "../utils/utils.js";
 const userSchema = mongoose.Schema({
   fullname: String,
   email: String,
-  accountType: String,
+  accountType: {
+    type: String,
+    default: "",
+  },
   password: String,
   createdOn: {
     type: Date,

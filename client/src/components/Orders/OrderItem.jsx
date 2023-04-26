@@ -2,6 +2,7 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { ThemeColors } from '../../Themes/default';
 import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
+import { DB_URL } from '../../config/constants';
 
 const OrderItem = ({ orderItem, book }) => {
   return (
@@ -12,7 +13,7 @@ const OrderItem = ({ orderItem, book }) => {
       <Box width={{ base: '100%', md: '50%', xl: '50%' }}>
         <Flex>
           <Image
-            src={book?.thumbnail}
+            src={DB_URL + '/' + book?.thumbnail}
             width={{ base: '40%', md: '40%', xl: '20%' }}
           />
           <Box padding={'1rem'} width={{ base: '60%', md: '60%', xl: '28%' }}>

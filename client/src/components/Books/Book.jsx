@@ -1,6 +1,7 @@
 import { Box, Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
 import React from 'react';
 import { ThemeColors } from '../../Themes/default';
+import { DB_URL } from '../../config/constants';
 
 const Book = ({ book }) => {
   return (
@@ -10,7 +11,7 @@ const Book = ({ book }) => {
         padding={'1rem'}
         background={ThemeColors.baseColor}
       >
-        <Image src={'http://localhost:3501/' + book.thumbnail} width={'100%'} />
+        <Image src={DB_URL + '/' + book.thumbnail} width={'100%'} />
         <Box padding={'0.5rem 0 0 0'}>
           <Box>
             <Text

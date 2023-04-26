@@ -20,6 +20,7 @@ const Home = () => {
   useEffect(() => {
     fetchBooksFunc()
       .then(result => {
+        console.log(result);
         if (result.status == 'Success') {
           setBooks(result.Books);
         }

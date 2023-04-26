@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { redirect, useSearchParams } from 'react-router-dom';
-import { Books, Profile } from '../config/constants';
+import { Books, DB_URL, Profile } from '../config/constants';
 import { deleteBookFunc, fetchBookFunc, newCartFunc } from '../apis/apiFuncs';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -166,7 +166,10 @@ const Bookdetails = () => {
           <Box margin={'auto'} width={{ base: '100%', md: '100%', xl: '70%' }}>
             <Flex flexDirection={{ base: 'column', md: 'column', xl: 'row' }}>
               <Box width={{ base: '100%', md: '100%', xl: '40%' }}>
-                <Image src={Book ? Book?.thumbnail : ''} width={'100%'} />
+                <Image
+                  src={Book ? DB_URL + '/' + Book?.thumbnail : ''}
+                  width={'100%'}
+                />
               </Box>
               <Box
                 width={{ base: '100%', md: '100%', xl: '40%' }}

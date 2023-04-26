@@ -6,6 +6,6 @@ dotenv.config();
 const devDbUrl = process.env.DEV_DB_URL;
 const prodDbUrl = process.env.PRODUCTION_DB_URL;
 
-const MongoClient = mongoose.connect(prodDbUrl);
+const MongoClient = mongoose.connect(devDbUrl);
 
 export default MongoClient;

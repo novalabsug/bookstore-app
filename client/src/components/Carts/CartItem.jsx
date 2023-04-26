@@ -12,6 +12,7 @@ import { ThemeColors } from '../../Themes/default';
 import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
 import { deleteCartFunc } from '../../apis/apiFuncs';
 import Notification from '../Notifications/Notification';
+import { DB_URL } from '../../config/constants';
 
 const CartItem = ({ cartItem, calcTotalFunc, setCheckoutData }) => {
   let [Copies, setCopies] = useState(1);
@@ -115,7 +116,7 @@ const CartItem = ({ cartItem, calcTotalFunc, setCheckoutData }) => {
         <Box width={{ base: '100%', md: '50%', xl: '50%' }}>
           <Flex>
             <Image
-              src={cartItem?.bookData?.thumbnail}
+              src={DB_URL + '/' + cartItem?.bookData?.thumbnail}
               width={{ base: '40%', md: '40%', xl: '30%' }}
             />
             <Box padding={'1rem'}>
