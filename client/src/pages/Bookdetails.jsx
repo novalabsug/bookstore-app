@@ -101,7 +101,18 @@ const Bookdetails = () => {
               })
           );
           // clear notification data
-          clearNotification();
+          setTimeout(() => {
+            setNotificationData(
+              prevState =>
+                (prevState = {
+                  ...prevState,
+                  type: '',
+                  status: false,
+                  message: '',
+                })
+            );
+            window.location.assign('/dashboard');
+          }, 3000);
         }
 
         if (result.Error) {
@@ -149,17 +160,22 @@ const Bookdetails = () => {
         type={NotificationData.type}
         message={NotificationData.message}
         status={NotificationData.status}
-      />{' '}
-      <Box padding={'3rem'}>
+      />
+      <Box padding={{ base: '2rem 1rem', md: '2rem 1rem', xl: '3rem' }}>
         <Flex>
-          <Box margin={'auto'} width={'70%'}>
-            <Flex>
-              <Box width={'40%'}>
+          <Box margin={'auto'} width={{ base: '100%', md: '100%', xl: '70%' }}>
+            <Flex flexDirection={{ base: 'column', md: 'column', xl: 'row' }}>
+              <Box width={{ base: '100%', md: '100%', xl: '40%' }}>
                 <Image src={Book ? Book?.thumbnail : ''} width={'100%'} />
               </Box>
-              <Box width={'60%'} padding={'0 2rem'}>
+              <Box
+                width={{ base: '100%', md: '100%', xl: '40%' }}
+                padding={{ base: '0', md: '0 1rem', xl: '0 2rem' }}
+              >
                 <Box>
-                  <Text fontSize={'5xl'}>{Book?.title}</Text>
+                  <Text fontSize={{ base: '3xl', md: '4xl', xl: '5xl' }}>
+                    {Book?.title}
+                  </Text>
                   <Box padding={'1rem 0'}>
                     {Book ? (
                       <Text fontSize={'md'} fontWeight={'bold'}>

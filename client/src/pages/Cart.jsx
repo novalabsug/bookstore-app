@@ -112,7 +112,9 @@ const Cart = () => {
         status={NotificationData.status}
       />
       <Box>
-        <Box padding={'1rem 3rem 3rem 3rem'}>
+        <Box
+          padding={{ base: '2rem 1rem', md: '2rem', xl: '1rem 3rem 3rem 3rem' }}
+        >
           <Box padding={'1rem 0'}>
             <Flex>
               <Box padding={'0.5rem'}>
@@ -135,8 +137,11 @@ const Cart = () => {
           </Box>
           <form onSubmit={handleCheckout}>
             <Box>
-              <Flex>
-                <Box width={'80%'} padding={'1rem'}>
+              <Flex flexDirection={{ base: 'column', md: 'column', xl: 'row' }}>
+                <Box
+                  width={{ base: '100%', md: '100%', xl: '80%' }}
+                  padding={'1rem'}
+                >
                   {/* // heading */}
                   <Box padding={'0 0 1rem 0'}>
                     <Flex>
@@ -184,7 +189,7 @@ const Cart = () => {
                     )}
                   </Box>
                 </Box>
-                <Box width={'20%'}>
+                <Box width={{ base: '100%', md: '100%', xl: '20%' }}>
                   <Box padding={'1rem'} border={'1.8px solid #000'}>
                     <Box padding={'1rem 0'}>
                       <Heading as={'h3'} size={'md'}>

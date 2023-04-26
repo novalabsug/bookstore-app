@@ -30,9 +30,20 @@ const Home = () => {
     <>
       <Box>
         {/* // banner */}
-        <Box height={'350px'} background={''} padding={'3rem'}>
+        <Box
+          height={{ base: 'auto', md: 'auto', xl: '350px' }}
+          background={''}
+          padding={{ base: '2rem 1rem', md: '2rem 1rem', xl: '3rem' }}
+        >
           <Flex>
-            <Box padding={'2rem 5rem 2rem 3rem'} width={'50%'}>
+            <Box
+              padding={{
+                base: '1rem 0',
+                md: '2rem 1rem',
+                xl: '2rem 5rem 2rem 3rem',
+              }}
+              width={{ base: '100%', md: '100%', xl: '50%' }}
+            >
               <Heading as={'h3'} size={'md'} color={'#b3b4b5'}>
                 Fran Lebowitz
               </Heading>
@@ -52,14 +63,27 @@ const Home = () => {
                 </Link>
               </Box>
             </Box>
-            <Box width={'15%'}></Box>
-            <Box width={'35%'} padding={'2rem 0'}>
+            <Box
+              width={'15%'}
+              display={{ base: 'none', md: 'none', xl: 'block' }}
+            ></Box>
+            <Box
+              width={'35%'}
+              padding={'2rem 0'}
+              display={{ base: 'none', md: 'none', xl: 'block' }}
+            >
               <Image src={Images.img} />
             </Box>
           </Flex>
         </Box>
         {/* Section One */}
-        <Box padding={'5rem 3rem 2rem 3rem'}>
+        <Box
+          padding={{
+            base: '2rem 1rem',
+            md: '3rem 1rem',
+            xl: '5rem 3rem 2rem 3rem',
+          }}
+        >
           <Box padding={'1rem 0'}>
             <Text
               fontSize={'2xl'}
@@ -79,7 +103,10 @@ const Home = () => {
           </Box>
           <Box padding={'1rem 0'}>
             <Flex>
-              <Box margin={'auto'} width={'70%'}>
+              <Box
+                margin={'auto'}
+                width={{ base: '100%', md: '100%', xl: '70%' }}
+              >
                 <Flex justifyContent={'center'} flexWrap={'wrap'}>
                   {Genres.map((genre, index) => (
                     <Box key={index}>
@@ -98,7 +125,9 @@ const Home = () => {
           </Box>
         </Box>
         {/* Section 2 */}
-        <Box padding={' 2rem 5rem 3rem 5rem'}>
+        <Box
+          padding={{ base: '1rem', md: '2rem 1rem', xl: '2rem 5rem 3rem 5rem' }}
+        >
           <Box padding={'1rem 0'}>
             <Heading
               as={'h3'}

@@ -37,9 +37,12 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box padding={'3rem'}>
+      <Box padding={{ base: '2rem 1rem', md: '2rem 1rem', xl: '3rem' }}>
         <Flex>
-          <Box width={'20%'}>
+          <Box
+            width={'20%'}
+            display={{ base: 'none', md: 'none', xl: 'block' }}
+          >
             <Stack>
               <Box padding={'0.5rem 0'}>
                 <Link href="/dashboard">
@@ -53,7 +56,7 @@ const Dashboard = () => {
               </Box>
             </Stack>
           </Box>
-          <Box width={'80%'}>
+          <Box width={{ base: '100%', md: '100%', xl: '80%' }}>
             <Box padding={'1rem 0'}>
               <Flex>
                 <Heading as={'h3'} size={'md'}>
@@ -80,7 +83,7 @@ const Dashboard = () => {
                 xl: 'repeat(5, 1fr)',
               }}
               gridGap="1rem"
-              padding={'0 2rem'}
+              padding={{ base: '0', md: '0 1rem', xl: '0 2rem' }}
             >
               {Books ? (
                 Books.length > 0 ? (

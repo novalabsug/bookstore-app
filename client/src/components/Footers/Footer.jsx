@@ -6,9 +6,15 @@ import { Genres } from '../../config/constants';
 
 const Footer = () => {
   return (
-    <Box padding={'0 2rem'}>
-      <Flex padding={'2rem 1rem'}>
-        <Box padding={'1rem 2rem'} width={'30%'}>
+    <Box padding={{ base: '0 1rem', md: '0 1rem', xl: '0 2rem' }}>
+      <Flex
+        padding={'2rem 1rem'}
+        flexDirection={{ base: 'column', md: 'column', xl: 'row' }}
+      >
+        <Box
+          padding={{ base: '1rem 0', md: '1rem 0', xl: '1rem 2rem' }}
+          width={{ base: '100%', md: '100%', xl: '30%' }}
+        >
           <Box>
             <Link href={'/'}>
               <Heading
@@ -39,7 +45,10 @@ const Footer = () => {
             </Flex>
           </Box>
         </Box>
-        <Box padding={'1rem 2rem'} width={'45%'}>
+        <Box
+          padding={{ base: '1rem 0', md: '1rem 0', xl: '1rem 2rem' }}
+          width={{ base: '100%', md: '100%', xl: '45%' }}
+        >
           <Box>
             <Heading as={'h3'} size={'md'}>
               Categories

@@ -23,12 +23,10 @@ const Order = () => {
       }
     });
   }, []);
-
-  console.log(Checkout);
   return (
-    <Box padding={'3rem'}>
+    <Box padding={{ base: '2rem 1rem', md: '2rem 1rem', xl: '3rem' }}>
       <Flex>
-        <Box width={'20%'}>
+        <Box width={'20%'} display={{ base: 'none', md: 'none', xl: 'block' }}>
           <Stack>
             <Box padding={'0.5rem 0'}>
               <Link href="/dashboard">
@@ -42,7 +40,7 @@ const Order = () => {
             </Box>
           </Stack>
         </Box>
-        <Box width={'80%'}>
+        <Box width={{ base: '100%', md: '100%', xl: '80%' }}>
           <Box>
             <Heading as={'h3'} size={'md'}>
               Client
@@ -80,7 +78,7 @@ const Order = () => {
             </Heading>
             <Box padding={'0.5rem 0'}>
               <Box padding={'0 0 1rem 0'}>
-                <Flex>
+                <Flex display={{ base: 'none', md: 'flex', xl: 'flex' }}>
                   <Box width={'50%'}>
                     <Heading as={'h3'} size={'md'}>
                       Books

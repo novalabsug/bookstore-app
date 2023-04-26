@@ -107,7 +107,10 @@ const Signup = () => {
           <form onSubmit={handleSubmit}>
             <Box>
               <Flex>
-                <Box margin={'auto'} width={'50%'}>
+                <Box
+                  margin={'auto'}
+                  width={{ base: '90%', md: '70%', xl: '50%' }}
+                >
                   <Box padding={'0.5rem 0'}>
                     <Input
                       type="text"

@@ -5,19 +5,25 @@ import { AiOutlineClose, AiOutlineDelete } from 'react-icons/ai';
 
 const OrderItem = ({ orderItem, book }) => {
   return (
-    <Flex padding={'1rem 0'}>
-      <Box width={'50%'}>
+    <Flex
+      padding={{ base: '2rem 0', md: '1rem 0', xl: '1rem 0' }}
+      flexDirection={{ base: 'column', md: 'row', xl: 'row' }}
+    >
+      <Box width={{ base: '100%', md: '50%', xl: '50%' }}>
         <Flex>
-          <Image src={book?.thumbnail} width={'20%'} />
-          <Box padding={'1rem'}>
+          <Image
+            src={book?.thumbnail}
+            width={{ base: '40%', md: '40%', xl: '20%' }}
+          />
+          <Box padding={'1rem'} width={{ base: '60%', md: '60%', xl: '28%' }}>
             <Text
-              display={'-webkit-box'}
+              display={{ base: 'block', md: '-webkit-box', xl: '-webkit-box' }}
               style={{
                 WebkitLineClamp: 1,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}
-              fontSize={'lg'}
+              fontSize={{ base: '3xl', md: '2xl', xl: 'lg' }}
             >
               {book?.title}
             </Text>
@@ -27,7 +33,7 @@ const OrderItem = ({ orderItem, book }) => {
           </Box>
         </Flex>
       </Box>
-      <Box width={'30%'}>
+      <Box width={{ base: '100%', md: '30%', xl: '30%' }}>
         <Box padding={'0 2rem 0 0'}>
           {orderItem.map((item, index) =>
             item?.book == book?._id ? (
@@ -40,7 +46,7 @@ const OrderItem = ({ orderItem, book }) => {
           )}
         </Box>
       </Box>
-      <Box width={'20%'}>
+      <Box width={{ base: '100%', md: '20%', xl: '20%' }}>
         <Flex>
           <Box padding={'0 2rem 0 0'}>
             {orderItem.map((item, index) =>

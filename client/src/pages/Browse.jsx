@@ -23,9 +23,13 @@ const Browse = () => {
   return (
     <>
       <Box>
-        <Box padding={'2rem 3rem'}>
-          <Flex>
-            <Box padding={'1rem'} border={'1.8px solid #000'} width={'20%'}>
+        <Box padding={{ base: '2rem 1rem', md: '2rem', xl: '2rem 3rem' }}>
+          <Flex flexDirection={{ base: 'column', md: 'column', xl: 'row' }}>
+            <Box
+              padding={'1rem'}
+              border={'1.8px solid #000'}
+              width={{ base: '100%', md: '100%', xl: '20%' }}
+            >
               <Box padding={'1rem 0'}>
                 <Heading as={'h3'} size={'md'}>
                   All Categories
@@ -45,7 +49,7 @@ const Browse = () => {
                 ))}
               </Stack>
             </Box>
-            <Box width={'80%'}>
+            <Box width={{ base: '100%', md: '100%', xl: '80%' }}>
               <Grid
                 gridTemplateColumns={{
                   base: 'repeat(1, 1fr)',
@@ -53,7 +57,7 @@ const Browse = () => {
                   xl: 'repeat(5, 1fr)',
                 }}
                 gridGap="1rem"
-                padding={'0 2rem'}
+                padding={{ base: '2rem 1rem', md: '2rem', xl: '0 2rem' }}
               >
                 {Books.map((book, index) => (
                   <Book key={index} book={book} />

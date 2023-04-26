@@ -230,6 +230,8 @@ export const newCartPost = TryCatch(async (req, res, next) => {
 
   const BookData = await Cart.findOne({ book, user });
 
+  console.log(BookData)
+
   if (BookData) throw VerificationError("Book already in cart");
 
   const NewCart = new Cart({ user, book });
